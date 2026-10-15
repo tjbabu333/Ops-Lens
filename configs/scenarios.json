@@ -1,0 +1,127 @@
+{
+  "http-500-after-deploy": {
+    "service": "billing-api-demo",
+    "initial_http_status": 500,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 500"
+      },
+      {
+        "type": "application_log",
+        "detail": "Synthetic error: unavailable database connection"
+      },
+      {
+        "type": "metric",
+        "detail": "Synthetic 5xx rate increased to 65%"
+      }
+    ],
+    "changes": [
+      {
+        "change_id": "DEPLOY-SIM-001",
+        "minutes_before_incident": 3
+      }
+    ],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": true
+  },
+  "approval-denied": {
+    "service": "billing-api-demo",
+    "initial_http_status": 503,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 503"
+      }
+    ],
+    "changes": [],
+    "simulated_approval": false,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": true
+  },
+  "failed-verification": {
+    "service": "billing-api-demo",
+    "initial_http_status": 500,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 500"
+      }
+    ],
+    "changes": [],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": false
+  },
+  "missing-evidence": {
+    "service": "billing-api-demo",
+    "initial_http_status": 500,
+    "evidence": [],
+    "changes": [],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": true
+  },
+  "unapproved-action": {
+    "service": "billing-api-demo",
+    "initial_http_status": 502,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 502"
+      }
+    ],
+    "changes": [],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "manual_review_only"
+    ],
+    "simulated_recovery_succeeds": true
+  },
+  "healthy-service": {
+    "service": "billing-api-demo",
+    "initial_http_status": 200,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 200"
+      }
+    ],
+    "changes": [],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": true
+  },
+  "unrelated-change": {
+    "service": "billing-api-demo",
+    "initial_http_status": 500,
+    "evidence": [
+      {
+        "type": "health_check",
+        "detail": "Synthetic GET /health returned 500"
+      }
+    ],
+    "changes": [
+      {
+        "change_id": "DEPLOY-SIM-OLD",
+        "minutes_before_incident": 180
+      }
+    ],
+    "simulated_approval": true,
+    "allowed_actions": [
+      "simulated_restart"
+    ],
+    "simulated_recovery_succeeds": true
+  }
+}

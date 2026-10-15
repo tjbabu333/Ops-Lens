@@ -1,0 +1,25 @@
+# local/virtual environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+
+# private information / credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*
+.aws/
+
+# generated synthetic output: do not publish logs/reports
+reports/*.json
+reports/archive/
+logs/*.jsonl
+
+# desktop/editor artifacts
+.DS_Store
+Thumbs.db
